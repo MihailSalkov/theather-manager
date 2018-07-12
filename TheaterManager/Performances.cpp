@@ -120,6 +120,8 @@ PerformanceCollection ^ Performances::getByCurrentMonth()
 			res->Items->Add(perf);
 	}
 
+	res->Sort();
+
 	return res;
 }
 

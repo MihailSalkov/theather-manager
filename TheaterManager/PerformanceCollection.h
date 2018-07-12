@@ -24,4 +24,5 @@ public:
 	int SoldTickets();
 	double Profit();
 	double Popularity();
+	void Sort();
 };

@@ -1,4 +1,5 @@
 #include "PerformanceCollection.h"
+#include "PerformanceComparers.h"
 
 PerformanceCollection::PerformanceCollection()
 {
@@ -33,4 +34,9 @@ double PerformanceCollection::Popularity()
 		popularity += perf->Popularity();
 
 	return popularity;
+}
+
+void PerformanceCollection::Sort()
+{
+	Items->Sort(gcnew DateComparer());
 }

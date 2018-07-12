@@ -137,6 +137,7 @@
     <ClCompile Include="Performance.cpp" />
     <ClCompile Include="PerformanceCollection.cpp" />
     <ClCompile Include="PerformanceComparers.cpp" />
+    <ClCompile Include="PerformanceEditForm.cpp" />
     <ClCompile Include="PerformanceInfo.cpp" />
     <ClCompile Include="PerformanceInfoEditForm.cpp" />
     <ClCompile Include="Performances.cpp" />
@@ -147,6 +148,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Performance.h" />
+    <ClInclude Include="PerformanceEditForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PerformanceInfo.h" />
     <ClInclude Include="PerformanceInfoEditForm.h">
       <FileType>CppForm</FileType>
