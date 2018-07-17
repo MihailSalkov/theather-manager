@@ -1,6 +1,25 @@
 ﻿  MyForm.cpp
 c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfoeditform.h(23): warning C4677: PerformanceInfoEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
   c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
-c:\users\mihail\source\repos\theatermanager\theatermanager\performancesinfoform.h(58): warning C4677: PerformancesInfoForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
+c:\users\mihail\source\repos\theatermanager\theatermanager\performancesinfoform.h(61): warning C4677: PerformancesInfoForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
   c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
+c:\users\mihail\source\repos\theatermanager\theatermanager\performanceeditform.h(26): warning C4677: PerformanceEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "Performance"
+  c:\users\mihail\source\repos\theatermanager\theatermanager\performance.h(8): note:  см. объявление "Performance"
+c:\users\mihail\source\repos\theatermanager\theatermanager\performanceeditform.h(26): warning C4677: PerformanceEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
+  c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
+  Performance.cpp
+  PerformanceCollection.cpp
+  PerformanceComparers.cpp
+  PerformanceEditForm.cpp
+c:\users\mihail\source\repos\theatermanager\theatermanager\performanceeditform.h(26): warning C4677: PerformanceEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "Performance"
+  c:\users\mihail\source\repos\theatermanager\theatermanager\performance.h(8): note:  см. объявление "Performance"
+c:\users\mihail\source\repos\theatermanager\theatermanager\performanceeditform.h(26): warning C4677: PerformanceEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
+  c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
+  Performances.cpp
+  PerformancesInfoForm.cpp
+c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfoeditform.h(23): warning C4677: PerformanceInfoEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
+  c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
+c:\users\mihail\source\repos\theatermanager\theatermanager\performancesinfoform.h(61): warning C4677: PerformancesInfoForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
+  c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
+  Создание кода...
   TheaterManager.vcxproj -> C:\Users\Mihail\source\repos\TheaterManager\Debug\TheaterManager.exe

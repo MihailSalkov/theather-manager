@@ -25,7 +25,7 @@ public:
 			return currentMonth;
 		}
 		void set(DateTime currentMonth) {
-			this->currentMonth = currentMonth;
+			this->currentMonth = DateTime(currentMonth.Year, currentMonth.Month, 1);
 		}
 	}
 
@@ -38,5 +38,7 @@ public:
 	PerformanceCollection ^ getByPopularity();
 	PerformanceCollection ^ getByProfit();
 	PerformanceCollection ^ getByPerformance(PerformanceInfo ^ perf);
+	void AddPerformance(Performance ^ perf);
+	void RemovePerformance(Performance ^ perf);
 
 };

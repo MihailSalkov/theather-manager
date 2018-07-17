@@ -21,6 +21,7 @@ namespace TheaterManager {
 		List<PerformanceInfo^> ^ performancesInfo;
 	private: System::Windows::Forms::ToolStripMenuItem^  ğåäàêòèğîâàòüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  óäàëèòüToolStripMenuItem;
+	private: System::Windows::Forms::Label^  labelTicketPrice;
 
 		PerformanceInfo ^ selectPerformance;
 
@@ -33,6 +34,7 @@ namespace TheaterManager {
 				{
 					textBoxName->Text = "";
 					labelAge->Text = "Âîçğàñò: ";
+					labelTicketPrice->Text = "Öåíà áèëåòà: ";
 					richTextBoxInfo->Text = "";
 
 					ğåäàêòèğîâàòüToolStripMenuItem->Enabled = false;
@@ -42,6 +44,7 @@ namespace TheaterManager {
 				{
 					textBoxName->Text = selectPerformance->Name;
 					labelAge->Text = "Âîçğàñò: " + (selectPerformance->Age == Ages::CHILD ? "Äåòñêèé" : "Âçğîñëûé");
+					labelTicketPrice->Text = "Öåíà áèëåòà: " + selectPerformance->TicketPrice + " ğóá.";
 					richTextBoxInfo->Text = selectPerformance->Info;
 
 					ğåäàêòèğîâàòüToolStripMenuItem->Enabled = true;
@@ -109,6 +112,7 @@ namespace TheaterManager {
 			this->ğåäàêòèğîâàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->óäàëèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->labelAge = (gcnew System::Windows::Forms::Label());
+			this->labelTicketPrice = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -196,11 +200,21 @@ namespace TheaterManager {
 			this->labelAge->TabIndex = 6;
 			this->labelAge->Text = L"Âîçğàñò:";
 			// 
+			// labelTicketPrice
+			// 
+			this->labelTicketPrice->AutoSize = true;
+			this->labelTicketPrice->Location = System::Drawing::Point(444, 83);
+			this->labelTicketPrice->Name = L"labelTicketPrice";
+			this->labelTicketPrice->Size = System::Drawing::Size(74, 13);
+			this->labelTicketPrice->TabIndex = 7;
+			this->labelTicketPrice->Text = L"Öåíà áèëåòà:";
+			// 
 			// PerformancesInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(596, 282);
+			this->Controls->Add(this->labelTicketPrice);
 			this->Controls->Add(this->labelAge);
 			this->Controls->Add(this->richTextBoxInfo);
 			this->Controls->Add(this->label2);

@@ -1,4 +1,5 @@
   TheaterManager.MyForm.resources - Embedded, ContainedInManifestFile, 
+  TheaterManager.PerformanceEditForm.resources - Embedded, ContainedInManifestFile, 
   TheaterManager.PerformanceInfoEditForm.resources - Embedded, ContainedInManifestFile, 
   TheaterManager.PerformancesInfoForm.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -22,6 +23,9 @@ Class TheaterManager.PerformanceInfoEditForm: AutoLayout, AnsiClass, Class, Publ
 Class TheaterManager.PerformancesInfoForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(System.Collections.Generic.List`1[PerformanceInfo]): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class TheaterManager.PerformanceEditForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Performance, System.Collections.Generic.List`1[PerformanceInfo], Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class TheaterManager.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

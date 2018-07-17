@@ -18,7 +18,7 @@ Performances::Performances(String ^ fileName, DateTime currentMonth)
 	this->fileName = fileName;
 	itemsInfo = gcnew List<PerformanceInfo^>();
 	performances = gcnew PerformanceCollection();
-	this->currentMonth = currentMonth;
+	CurrentMonth = currentMonth;
 	Load();
 }
 
@@ -29,7 +29,7 @@ void Performances::Load()
 
 	StreamReader ^ sr = gcnew StreamReader(fileName);
 
-	enum ReadState { NAME, AGE, INFO, EVENTS };
+	enum ReadState { NAME, AGE, PRICE, INFO, EVENTS };
 
 	String ^ line;
 	ReadState state = NAME;
@@ -48,6 +48,12 @@ void Performances::Load()
 
 		case AGE:
 			perfInfo->Age = (Ages) Int32::Parse(line);
+
+			state = PRICE;
+			break;
+
+		case PRICE:
+			perfInfo->TicketPrice = perfInfo->TicketPrice.Parse(line);
 
 			state = INFO;
 			break;
@@ -77,8 +83,7 @@ void Performances::Load()
 			Performance ^ perf = gcnew Performance();
 			perf->Info = perfInfo;
 			perf->Date = DateTime::Parse(fields[0]);
-			perf->TicketPrice = perf->TicketPrice.Parse(fields[1]);
-			perf->SoldTickets = perf->SoldTickets.Parse(fields[2]);
+			perf->SoldTickets = perf->SoldTickets.Parse(fields[1]);
 			performances->Items->Add(perf);
 			break;
 		}
@@ -95,13 +100,14 @@ void Performances::Save()
 	{
 		sw->WriteLine(perfInfo->Name);
 		sw->WriteLine(perfInfo->Age);
+		sw->WriteLine(perfInfo->TicketPrice);
 		sw->WriteLine(perfInfo->Info);
 		sw->WriteLine("#@#");
 
 		PerformanceCollection ^ perfs = getByPerformance(perfInfo);
 		for each (Performance ^ perf in perfs->Items)
 		{
-			sw->WriteLine(perf->Date.ToString() + ";" + perf->TicketPrice + ";" + perf->SoldTickets);
+			sw->WriteLine(perf->Date.ToString() + ";" + perf->SoldTickets);
 		}
 		sw->WriteLine("");
 	}
@@ -156,4 +162,16 @@ PerformanceCollection ^ Performances::getByPerformance(PerformanceInfo ^ perfInf
 	}
 
 	return res;
+}
+
+void Performances::AddPerformance(Performance ^ perf)
+{
+	performances->Items->Add(perf);
+	Save();
+}
+
+void Performances::RemovePerformance(Performance ^ perf)
+{
+	performances->Items->Remove(perf);
+	Save();
 }

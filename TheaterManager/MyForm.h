@@ -2,6 +2,7 @@
 
 #include "Performances.h"
 #include "PerformancesInfoForm.h"
+#include "PerformanceEditForm.h"
 
 namespace TheaterManager {
 
@@ -19,18 +20,68 @@ namespace TheaterManager {
 	{
 	private:
 		Performances ^ performances;
+
+		property DateTime CurrentMonth {
+			DateTime get() {
+				return performances->CurrentMonth;
+			}
+			void set(DateTime currentMonth) {
+				performances->CurrentMonth = currentMonth;
+
+				ViewPerformances();
+			}
+		}
+
+		Performance ^ selectPerformance;
 	private: System::Windows::Forms::ToolStripMenuItem^  äîáàâèòüToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  ðåäàêòèðîâàòüToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  óäàëèòüToolStripMenuItem;
+
+
+		property Performance ^ SelectPerformance {
+			void set(Performance ^ selectPerformance)
+			{
+				this->selectPerformance = selectPerformance;
+
+				if (selectPerformance == nullptr)
+				{
+					/*textBoxName->Text = "";
+					labelAge->Text = "Âîçðàñò: ";
+					richTextBoxInfo->Text = "";*/
+
+					/*ðåäàêòèðîâàòüToolStripMenuItem->Enabled = false;
+					óäàëèòüToolStripMenuItem->Enabled = false;*/
+				}
+				else
+				{
+					/*textBoxName->Text = selectPerformance->Name;
+					labelAge->Text = "Âîçðàñò: " + (selectPerformance->Age == Ages::CHILD ? "Äåòñêèé" : "Âçðîñëûé");
+					richTextBoxInfo->Text = selectPerformance->Info;
+
+					ðåäàêòèðîâàòüToolStripMenuItem->Enabled = true;
+					óäàëèòüToolStripMenuItem->Enabled = true;*/
+				}
+			}
+			Performance ^ get()
+			{
+				return selectPerformance;
+			}
+		}
+
+
 			 PerformanceCollection ^ currentPerformances;
 
 		void ViewPerformances()
 		{
+			SelectPerformance = nullptr;
+
 			currentPerformances = performances->getByCurrentMonth();
 
 			listBoxPerformances->Items->Clear();
 
 			for each (Performance ^ perf in currentPerformances->Items)
 			{
-				listBoxPerformances->Items->Add(perf->Date.ToString() + " " + perf->Info->Name);
+				listBoxPerformances->Items->Add(perf->ShortName);
 			}
 		}
 	public:
@@ -38,7 +89,7 @@ namespace TheaterManager {
 		{
 			InitializeComponent();
 			
-			performances = gcnew Performances("performances.db", DateTime(DateTime::Today.Year, DateTime::Today.Month, 1));
+			performances = gcnew Performances("performances.db", DateTime::Today);
 		}
 
 	protected:
@@ -77,19 +128,21 @@ namespace TheaterManager {
 		{
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ñïåêòàêëèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->äîáàâèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ðåäàêòèðîâàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->óäàëèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->dateTimePickerCurrent = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->listBoxPerformances = (gcnew System::Windows::Forms::ListBox());
-			this->äîáàâèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->ñïåêòàêëèToolStripMenuItem,
-					this->äîáàâèòüToolStripMenuItem
+					this->äîáàâèòüToolStripMenuItem, this->ðåäàêòèðîâàòüToolStripMenuItem, this->óäàëèòüToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -103,6 +156,27 @@ namespace TheaterManager {
 			this->ñïåêòàêëèToolStripMenuItem->Size = System::Drawing::Size(77, 20);
 			this->ñïåêòàêëèToolStripMenuItem->Text = L"Ñïåêòàêëè";
 			this->ñïåêòàêëèToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñïåêòàêëèToolStripMenuItem_Click);
+			// 
+			// äîáàâèòüToolStripMenuItem
+			// 
+			this->äîáàâèòüToolStripMenuItem->Name = L"äîáàâèòüToolStripMenuItem";
+			this->äîáàâèòüToolStripMenuItem->Size = System::Drawing::Size(71, 20);
+			this->äîáàâèòüToolStripMenuItem->Text = L"Äîáàâèòü";
+			this->äîáàâèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::äîáàâèòüToolStripMenuItem_Click);
+			// 
+			// ðåäàêòèðîâàòüToolStripMenuItem
+			// 
+			this->ðåäàêòèðîâàòüToolStripMenuItem->Name = L"ðåäàêòèðîâàòüToolStripMenuItem";
+			this->ðåäàêòèðîâàòüToolStripMenuItem->Size = System::Drawing::Size(99, 20);
+			this->ðåäàêòèðîâàòüToolStripMenuItem->Text = L"Ðåäàêòèðîâàòü";
+			this->ðåäàêòèðîâàòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ðåäàêòèðîâàòüToolStripMenuItem_Click);
+			// 
+			// óäàëèòüToolStripMenuItem
+			// 
+			this->óäàëèòüToolStripMenuItem->Name = L"óäàëèòüToolStripMenuItem";
+			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(63, 20);
+			this->óäàëèòüToolStripMenuItem->Text = L"Óäàëèòü";
+			this->óäàëèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::óäàëèòüToolStripMenuItem_Click);
 			// 
 			// label1
 			// 
@@ -121,6 +195,7 @@ namespace TheaterManager {
 			this->dateTimePickerCurrent->Name = L"dateTimePickerCurrent";
 			this->dateTimePickerCurrent->Size = System::Drawing::Size(114, 20);
 			this->dateTimePickerCurrent->TabIndex = 2;
+			this->dateTimePickerCurrent->ValueChanged += gcnew System::EventHandler(this, &MyForm::dateTimePickerCurrent_ValueChanged);
 			// 
 			// label2
 			// 
@@ -140,12 +215,6 @@ namespace TheaterManager {
 			this->listBoxPerformances->Name = L"listBoxPerformances";
 			this->listBoxPerformances->Size = System::Drawing::Size(306, 264);
 			this->listBoxPerformances->TabIndex = 4;
-			// 
-			// äîáàâèòüToolStripMenuItem
-			// 
-			this->äîáàâèòüToolStripMenuItem->Name = L"äîáàâèòüToolStripMenuItem";
-			this->äîáàâèòüToolStripMenuItem->Size = System::Drawing::Size(71, 20);
-			this->äîáàâèòüToolStripMenuItem->Text = L"Äîáàâèòü";
 			// 
 			// MyForm
 			// 
@@ -177,5 +246,32 @@ namespace TheaterManager {
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		ViewPerformances();
 	}
+private: System::Void äîáàâèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	Performance ^ p = gcnew Performance();
+	PerformanceEditForm ^ pef = gcnew PerformanceEditForm(p, performances->ItemsInfo, true);
+	if (pef->ShowDialog() == Windows::Forms::DialogResult::OK)
+	{
+		performances->AddPerformance(p);
+		ViewPerformances();
+	}
+}
+private: System::Void óäàëèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (MessageBox::Show("Óäàëèòü ñîáûòèå \"" + selectPerformance->ShortName + "\"?", "Óäàëèòü ñîáûòèå?", MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == Windows::Forms::DialogResult::OK)
+	{
+		performances->RemovePerformance(selectPerformance);
+		ViewPerformances();
+	}
+}
+private: System::Void ðåäàêòèðîâàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	PerformanceEditForm ^ pef = gcnew PerformanceEditForm(selectPerformance, performances->ItemsInfo, false);
+	if (pef->ShowDialog() == Windows::Forms::DialogResult::OK)
+	{
+		performances->Save();
+		ViewPerformances();
+	}
+}
+private: System::Void dateTimePickerCurrent_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+	CurrentMonth = dateTimePickerCurrent->Value;
+}
 };
 }

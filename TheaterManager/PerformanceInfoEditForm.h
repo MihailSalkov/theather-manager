@@ -39,6 +39,7 @@ namespace TheaterManager {
 				textBoxName->Text = pi->Name;
 				comboBoxAge->SelectedIndex = (int)pi->Age;
 				richTextBoxInfo->Text = pi->Info;
+				textBoxTicketPrice->Text = pi->TicketPrice.ToString();
 			}
 		}
 
@@ -64,6 +65,9 @@ namespace TheaterManager {
 	private: System::Windows::Forms::Button^  buttonConfirm;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::ComboBox^  comboBoxAge;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::TextBox^  textBoxTicketPrice;
+
 
 	protected:
 
@@ -89,6 +93,8 @@ namespace TheaterManager {
 			this->buttonCancel = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->comboBoxAge = (gcnew System::Windows::Forms::ComboBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBoxTicketPrice = (gcnew System::Windows::Forms::TextBox());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -129,7 +135,7 @@ namespace TheaterManager {
 			// 
 			this->panel1->Controls->Add(this->buttonConfirm);
 			this->panel1->Controls->Add(this->buttonCancel);
-			this->panel1->Location = System::Drawing::Point(13, 304);
+			this->panel1->Location = System::Drawing::Point(13, 359);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(259, 35);
 			this->panel1->TabIndex = 4;
@@ -158,11 +164,11 @@ namespace TheaterManager {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(76, 62);
+			this->label3->Location = System::Drawing::Point(108, 62);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(134, 13);
+			this->label3->Size = System::Drawing::Size(60, 13);
 			this->label3->TabIndex = 5;
-			this->label3->Text = L"Возрастное ограничение";
+			this->label3->Text = L"Категория";
 			// 
 			// comboBoxAge
 			// 
@@ -174,11 +180,29 @@ namespace TheaterManager {
 			this->comboBoxAge->Size = System::Drawing::Size(121, 21);
 			this->comboBoxAge->TabIndex = 6;
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(110, 311);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(71, 13);
+			this->label4->TabIndex = 7;
+			this->label4->Text = L"Цена билета";
+			// 
+			// textBoxTicketPrice
+			// 
+			this->textBoxTicketPrice->Location = System::Drawing::Point(90, 327);
+			this->textBoxTicketPrice->Name = L"textBoxTicketPrice";
+			this->textBoxTicketPrice->Size = System::Drawing::Size(100, 20);
+			this->textBoxTicketPrice->TabIndex = 8;
+			// 
 			// PerformanceInfoEditForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 348);
+			this->ClientSize = System::Drawing::Size(284, 406);
+			this->Controls->Add(this->textBoxTicketPrice);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->comboBoxAge);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->panel1);
@@ -200,6 +224,7 @@ namespace TheaterManager {
 		pi->Name = textBoxName->Text;
 		pi->Age = (Ages) comboBoxAge->SelectedIndex;
 		pi->Info = richTextBoxInfo->Text;
+		pi->TicketPrice = pi->TicketPrice.Parse(textBoxTicketPrice->Text);
 	}
 private: System::Void PerformanceInfoEditForm_Load(System::Object^  sender, System::EventArgs^  e) {
 }

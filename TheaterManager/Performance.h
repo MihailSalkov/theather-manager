@@ -9,7 +9,6 @@ ref class Performance {
 private:
 	PerformanceInfo ^ info;
 	DateTime date;
-	double ticketPrice;
 	int soldTickets;
 
 public:
@@ -31,15 +30,6 @@ public:
 		}
 	}
 
-	property double TicketPrice {
-		double get() {
-			return ticketPrice;
-		}
-		void set(double ticketPrice) {
-			this->ticketPrice = ticketPrice;
-		}
-	}
-
 	property int SoldTickets {
 		int get() {
 			return soldTickets;
@@ -49,8 +39,14 @@ public:
 		}
 	}
 
+	property String ^ ShortName {
+		String ^ get() {
+			return Date.ToString("dd MMM â HH:mm") + " - " + Info->Name;
+		}
+	}
+
 	Performance();
-	Performance(PerformanceInfo ^ info, DateTime date, double ticketPrice);
+	Performance(PerformanceInfo ^ info, DateTime date);
 
 	double Profit();
 	double Popularity();

@@ -166,6 +166,9 @@
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceEditForm.resx">
+      <DependentUpon>PerformanceEditForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PerformanceInfoEditForm.resx">
       <DependentUpon>PerformanceInfoEditForm.h</DependentUpon>
     </EmbeddedResource>

@@ -15,6 +15,7 @@ private:
 	String ^ name;
 	String ^ info;
 	Ages age;
+	double ticketPrice;
 
 public:
 	property String ^ Name {
@@ -44,6 +45,15 @@ public:
 		}
 	}
 
+	property double TicketPrice {
+		double get() {
+			return ticketPrice;
+		}
+		void set(double ticketPrice) {
+			this->ticketPrice = ticketPrice;
+		}
+	}
+
 	PerformanceInfo();
-	PerformanceInfo(String ^ name, String ^ info, Ages age);
+	PerformanceInfo(String ^ name, String ^ info, Ages age, double ticketPrice);
 };
