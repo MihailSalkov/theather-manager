@@ -5,12 +5,12 @@ int DateComparer::Compare(Performance ^ first, Performance ^ second)
 	return first->Date.CompareTo(second->Date);
 }
 
-int PopularityComparer::Compare(Performance ^ first, Performance ^ second)
+int ReportPopularityComparer::Compare(ReportPerformance ^ first, ReportPerformance ^ second)
 {
-	return first->Popularity().CompareTo(second->Popularity());
+	return first->Popularity().CompareTo(second->Popularity()) * -1;
 }
 
-int ProfitComparer::Compare(Performance ^ first, Performance ^ second)
+int ReportProfitComparer::Compare(ReportPerformance ^ first, ReportPerformance ^ second)
 {
-	return first->Profit().CompareTo(second->Profit());
+	return first->Profit().CompareTo(second->Profit()) * -1;
 }

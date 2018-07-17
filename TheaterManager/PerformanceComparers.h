@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Performance.h"
+#include "ReportPerformance.h"
 
 using namespace System;
 using namespace System::Collections;
@@ -11,14 +12,14 @@ public:
 	virtual int Compare(Performance ^ first, Performance ^ second);
 };
 
-ref class PopularityComparer : Generic::IComparer<Performance^>
+ref class ReportPopularityComparer : Generic::IComparer<ReportPerformance^>
 {
 public:
-	virtual int Compare(Performance ^ first, Performance ^ second);
+	virtual int Compare(ReportPerformance ^ first, ReportPerformance ^ second);
 };
 
-ref class ProfitComparer : Generic::IComparer<Performance^>
+ref class ReportProfitComparer : Generic::IComparer<ReportPerformance^>
 {
 public:
-	virtual int Compare(Performance ^ first, Performance ^ second);
+	virtual int Compare(ReportPerformance ^ first, ReportPerformance ^ second);
 };

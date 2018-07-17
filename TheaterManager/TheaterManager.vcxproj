@@ -142,6 +142,9 @@
     <ClCompile Include="PerformanceInfoEditForm.cpp" />
     <ClCompile Include="Performances.cpp" />
     <ClCompile Include="PerformancesInfoForm.cpp" />
+    <ClCompile Include="ReportCollection.cpp" />
+    <ClCompile Include="ReportForm.cpp" />
+    <ClCompile Include="ReportPerformance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -161,6 +164,11 @@
     <ClInclude Include="PerformancesInfoForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ReportCollection.h" />
+    <ClInclude Include="ReportForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ReportPerformance.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
@@ -174,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PerformancesInfoForm.resx">
       <DependentUpon>PerformancesInfoForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm.resx">
+      <DependentUpon>ReportForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

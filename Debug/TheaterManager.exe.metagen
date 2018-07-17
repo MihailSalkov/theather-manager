@@ -2,6 +2,7 @@
   TheaterManager.PerformanceEditForm.resources - Embedded, ContainedInManifestFile, 
   TheaterManager.PerformanceInfoEditForm.resources - Embedded, ContainedInManifestFile, 
   TheaterManager.PerformancesInfoForm.resources - Embedded, ContainedInManifestFile, 
+  TheaterManager.ReportForm.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly TheaterManager, Version=0.0.*, Culture=Инвариантный язык (Инвариантная страна): 
 	hash=SHA1, flags=PublicKey
@@ -26,6 +27,9 @@ Class TheaterManager.PerformancesInfoForm: AutoLayout, AnsiClass, Class, Public,
 Class TheaterManager.PerformanceEditForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(Performance, System.Collections.Generic.List`1[PerformanceInfo], Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class TheaterManager.ReportForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(ReportCollection): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class TheaterManager.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

@@ -131,26 +131,6 @@ PerformanceCollection ^ Performances::getByCurrentMonth()
 	return res;
 }
 
-PerformanceCollection ^ Performances::getByPopularity()
-{
-	PerformanceCollection ^ res = gcnew PerformanceCollection();
-
-	res->Items->AddRange(performances->Items);
-	res->Items->Sort(gcnew PopularityComparer());
-
-	return res;
-}
-
-PerformanceCollection ^ Performances::getByProfit()
-{
-	PerformanceCollection ^ res = gcnew PerformanceCollection();
-
-	res->Items->AddRange(performances->Items);
-	res->Items->Sort(gcnew ProfitComparer());
-
-	return res;
-}
-
 PerformanceCollection ^ Performances::getByPerformance(PerformanceInfo ^ perfInfo)
 {
 	PerformanceCollection ^ res = gcnew PerformanceCollection();
@@ -161,12 +141,15 @@ PerformanceCollection ^ Performances::getByPerformance(PerformanceInfo ^ perfInf
 			res->Items->Add(perf);
 	}
 
+	res->Sort();
+
 	return res;
 }
 
 void Performances::AddPerformance(Performance ^ perf)
 {
 	performances->Items->Add(perf);
+	performances->Sort();
 	Save();
 }
 

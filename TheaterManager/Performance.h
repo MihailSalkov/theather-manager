@@ -50,4 +50,5 @@ public:
 
 	double Profit();
 	double Popularity();
+	bool IsNeedData();
 };

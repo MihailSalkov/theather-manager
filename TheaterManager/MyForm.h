@@ -3,6 +3,7 @@
 #include "Performances.h"
 #include "PerformancesInfoForm.h"
 #include "PerformanceEditForm.h"
+#include "ReportForm.h"
 
 namespace TheaterManager {
 
@@ -20,6 +21,8 @@ namespace TheaterManager {
 	{
 	private:
 		Performances ^ performances;
+		Performance ^ selectPerformance;
+		PerformanceCollection ^ currentPerformances;
 
 		property DateTime CurrentMonth {
 			DateTime get() {
@@ -32,12 +35,6 @@ namespace TheaterManager {
 			}
 		}
 
-		Performance ^ selectPerformance;
-	private: System::Windows::Forms::ToolStripMenuItem^  äîáàâèòüToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  ðåäàêòèðîâàòüToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  óäàëèòüToolStripMenuItem;
-
-
 		property Performance ^ SelectPerformance {
 			void set(Performance ^ selectPerformance)
 			{
@@ -45,21 +42,13 @@ namespace TheaterManager {
 
 				if (selectPerformance == nullptr)
 				{
-					/*textBoxName->Text = "";
-					labelAge->Text = "Âîçðàñò: ";
-					richTextBoxInfo->Text = "";*/
-
-					/*ðåäàêòèðîâàòüToolStripMenuItem->Enabled = false;
-					óäàëèòüToolStripMenuItem->Enabled = false;*/
+					ðåäàêòèðîâàòüToolStripMenuItem->Enabled = false;
+					óäàëèòüToolStripMenuItem->Enabled = false;
 				}
 				else
 				{
-					/*textBoxName->Text = selectPerformance->Name;
-					labelAge->Text = "Âîçðàñò: " + (selectPerformance->Age == Ages::CHILD ? "Äåòñêèé" : "Âçðîñëûé");
-					richTextBoxInfo->Text = selectPerformance->Info;
-
 					ðåäàêòèðîâàòüToolStripMenuItem->Enabled = true;
-					óäàëèòüToolStripMenuItem->Enabled = true;*/
+					óäàëèòüToolStripMenuItem->Enabled = true;
 				}
 			}
 			Performance ^ get()
@@ -68,21 +57,17 @@ namespace TheaterManager {
 			}
 		}
 
-
-			 PerformanceCollection ^ currentPerformances;
-
 		void ViewPerformances()
 		{
 			SelectPerformance = nullptr;
 
 			currentPerformances = performances->getByCurrentMonth();
+			currentPerformances->View(listBoxPerformances);
 
-			listBoxPerformances->Items->Clear();
+			labelSoldTickets->Text = "Ïðîäàíî áèëåòîâ: " + currentPerformances->SoldTickets();
+			labelProfit->Text = "Äîõîä: " + currentPerformances->Profit() + " ðóá.";
 
-			for each (Performance ^ perf in currentPerformances->Items)
-			{
-				listBoxPerformances->Items->Add(perf->ShortName);
-			}
+			panelNeedWrite->Visible = currentPerformances->getNeedData()->Items->Count > 0;
 		}
 	public:
 		MyForm(void)
@@ -110,6 +95,17 @@ namespace TheaterManager {
 	private: System::Windows::Forms::DateTimePicker^  dateTimePickerCurrent;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::ListBox^  listBoxPerformances;
+	private: System::Windows::Forms::ToolStripMenuItem^  äîáàâèòüToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  ðåäàêòèðîâàòüToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  óäàëèòüToolStripMenuItem;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  labelSoldTickets;
+	private: System::Windows::Forms::Label^  labelProfit;
+	private: System::Windows::Forms::Panel^  panelNeedWrite;
+
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Button^  buttonBeginWrite;
+	private: System::Windows::Forms::Button^  buttonReport;
 
 
 
@@ -135,7 +131,15 @@ namespace TheaterManager {
 			this->dateTimePickerCurrent = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->listBoxPerformances = (gcnew System::Windows::Forms::ListBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->labelSoldTickets = (gcnew System::Windows::Forms::Label());
+			this->labelProfit = (gcnew System::Windows::Forms::Label());
+			this->panelNeedWrite = (gcnew System::Windows::Forms::Panel());
+			this->buttonBeginWrite = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->buttonReport = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
+			this->panelNeedWrite->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
@@ -146,7 +150,7 @@ namespace TheaterManager {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(682, 24);
+			this->menuStrip1->Size = System::Drawing::Size(509, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -191,9 +195,9 @@ namespace TheaterManager {
 			// 
 			this->dateTimePickerCurrent->CustomFormat = L"   MMM yyyy";
 			this->dateTimePickerCurrent->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimePickerCurrent->Location = System::Drawing::Point(566, 2);
+			this->dateTimePickerCurrent->Location = System::Drawing::Point(406, 2);
 			this->dateTimePickerCurrent->Name = L"dateTimePickerCurrent";
-			this->dateTimePickerCurrent->Size = System::Drawing::Size(114, 20);
+			this->dateTimePickerCurrent->Size = System::Drawing::Size(94, 20);
 			this->dateTimePickerCurrent->TabIndex = 2;
 			this->dateTimePickerCurrent->ValueChanged += gcnew System::EventHandler(this, &MyForm::dateTimePickerCurrent_ValueChanged);
 			// 
@@ -202,7 +206,7 @@ namespace TheaterManager {
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(249)), static_cast<System::Int32>(static_cast<System::Byte>(249)),
 				static_cast<System::Int32>(static_cast<System::Byte>(249)));
-			this->label2->Location = System::Drawing::Point(520, 6);
+			this->label2->Location = System::Drawing::Point(360, 6);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(43, 13);
 			this->label2->TabIndex = 3;
@@ -215,12 +219,85 @@ namespace TheaterManager {
 			this->listBoxPerformances->Name = L"listBoxPerformances";
 			this->listBoxPerformances->Size = System::Drawing::Size(306, 264);
 			this->listBoxPerformances->TabIndex = 4;
+			this->listBoxPerformances->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::listBoxPerformances_SelectedIndexChanged);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(360, 36);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(115, 13);
+			this->label3->TabIndex = 5;
+			this->label3->Text = L"Ñòàòèñòèêà çà ìåñÿö";
+			// 
+			// labelSoldTickets
+			// 
+			this->labelSoldTickets->AutoSize = true;
+			this->labelSoldTickets->Location = System::Drawing::Point(364, 61);
+			this->labelSoldTickets->Name = L"labelSoldTickets";
+			this->labelSoldTickets->Size = System::Drawing::Size(107, 13);
+			this->labelSoldTickets->TabIndex = 6;
+			this->labelSoldTickets->Text = L"Ïðîäàíî áèëåòîâ: 0";
+			// 
+			// labelProfit
+			// 
+			this->labelProfit->AutoSize = true;
+			this->labelProfit->Location = System::Drawing::Point(364, 88);
+			this->labelProfit->Name = L"labelProfit";
+			this->labelProfit->Size = System::Drawing::Size(88, 13);
+			this->labelProfit->TabIndex = 7;
+			this->labelProfit->Text = L"Ïðèáûëü: 0 ðóá.";
+			// 
+			// panelNeedWrite
+			// 
+			this->panelNeedWrite->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->panelNeedWrite->Controls->Add(this->buttonBeginWrite);
+			this->panelNeedWrite->Controls->Add(this->label4);
+			this->panelNeedWrite->Location = System::Drawing::Point(323, 153);
+			this->panelNeedWrite->Name = L"panelNeedWrite";
+			this->panelNeedWrite->Size = System::Drawing::Size(177, 100);
+			this->panelNeedWrite->TabIndex = 8;
+			// 
+			// buttonBeginWrite
+			// 
+			this->buttonBeginWrite->Location = System::Drawing::Point(44, 58);
+			this->buttonBeginWrite->Name = L"buttonBeginWrite";
+			this->buttonBeginWrite->Size = System::Drawing::Size(85, 30);
+			this->buttonBeginWrite->TabIndex = 1;
+			this->buttonBeginWrite->Text = L"Çàïîëíèòü";
+			this->buttonBeginWrite->UseVisualStyleBackColor = true;
+			this->buttonBeginWrite->Click += gcnew System::EventHandler(this, &MyForm::buttonBeginWrite_Click);
+			// 
+			// label4
+			// 
+			this->label4->ForeColor = System::Drawing::Color::DarkRed;
+			this->label4->Location = System::Drawing::Point(12, 10);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(152, 32);
+			this->label4->TabIndex = 0;
+			this->label4->Text = L"Íåîáõîäèìî âíåñòè äàííûå î ïðîäàæå áèëåòîâ!";
+			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// buttonReport
+			// 
+			this->buttonReport->Location = System::Drawing::Point(347, 275);
+			this->buttonReport->Name = L"buttonReport";
+			this->buttonReport->Size = System::Drawing::Size(128, 32);
+			this->buttonReport->TabIndex = 9;
+			this->buttonReport->Text = L"Ñôîðìèðîâàòü îò÷åò";
+			this->buttonReport->UseVisualStyleBackColor = true;
+			this->buttonReport->Click += gcnew System::EventHandler(this, &MyForm::buttonReport_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(682, 331);
+			this->ClientSize = System::Drawing::Size(509, 331);
+			this->Controls->Add(this->buttonReport);
+			this->Controls->Add(this->panelNeedWrite);
+			this->Controls->Add(this->labelProfit);
+			this->Controls->Add(this->labelSoldTickets);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->listBoxPerformances);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->dateTimePickerCurrent);
@@ -233,38 +310,40 @@ namespace TheaterManager {
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
+			this->panelNeedWrite->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void ñïåêòàêëèToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		PerformancesInfoForm ^ pif = gcnew PerformancesInfoForm(performances->ItemsInfo);
-		pif->ShowDialog();
+		(gcnew PerformancesInfoForm(performances->ItemsInfo))->ShowDialog();
 		performances->Save();
+		ViewPerformances();
 	}
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		ViewPerformances();
 	}
 private: System::Void äîáàâèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Performance ^ p = gcnew Performance();
-	PerformanceEditForm ^ pef = gcnew PerformanceEditForm(p, performances->ItemsInfo, true);
-	if (pef->ShowDialog() == Windows::Forms::DialogResult::OK)
+
+	if ((gcnew PerformanceEditForm(p, performances->ItemsInfo, true))->ShowDialog() == Windows::Forms::DialogResult::OK)
 	{
 		performances->AddPerformance(p);
 		ViewPerformances();
 	}
 }
 private: System::Void óäàëèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (MessageBox::Show("Óäàëèòü ñîáûòèå \"" + selectPerformance->ShortName + "\"?", "Óäàëèòü ñîáûòèå?", MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == Windows::Forms::DialogResult::OK)
+	if (MessageBox::Show("Óäàëèòü ñîáûòèå \"" + selectPerformance->ShortName + "\"?", "Óäàëèòü ñîáûòèå?",
+			MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == Windows::Forms::DialogResult::OK)
 	{
 		performances->RemovePerformance(selectPerformance);
 		ViewPerformances();
 	}
 }
 private: System::Void ðåäàêòèðîâàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	PerformanceEditForm ^ pef = gcnew PerformanceEditForm(selectPerformance, performances->ItemsInfo, false);
-	if (pef->ShowDialog() == Windows::Forms::DialogResult::OK)
+	if ((gcnew PerformanceEditForm(selectPerformance, performances->ItemsInfo, false))->ShowDialog()
+			== Windows::Forms::DialogResult::OK)
 	{
 		performances->Save();
 		ViewPerformances();
@@ -272,6 +351,32 @@ private: System::Void ðåäàêòèðîâàòüToolStripMenuItem_Click(System::Object^  send
 }
 private: System::Void dateTimePickerCurrent_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 	CurrentMonth = dateTimePickerCurrent->Value;
+}
+private: System::Void listBoxPerformances_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	SelectPerformance = listBoxPerformances->SelectedIndex == -1
+		? nullptr : currentPerformances->Items[listBoxPerformances->SelectedIndex];
+}
+private: System::Void buttonBeginWrite_Click(System::Object^  sender, System::EventArgs^  e) {
+	for each (Performance ^ p in currentPerformances->getNeedData()->Items)
+	{
+		while (1)
+		{
+			(gcnew PerformanceEditForm(p, performances->ItemsInfo, false))->ShowDialog();
+
+			if (p->IsNeedData() &&
+				MessageBox::Show("Ââåñòè ñíîâà?", "Îøèáêà", MessageBoxButtons::RetryCancel, MessageBoxIcon::Warning)
+						== Windows::Forms::DialogResult::Retry)
+				continue;
+
+			break;
+		}
+	}
+
+	performances->Save();
+	ViewPerformances();
+}
+private: System::Void buttonReport_Click(System::Object^  sender, System::EventArgs^  e) {
+	(gcnew ReportForm(currentPerformances->getReport()))->ShowDialog();
 }
 };
 }

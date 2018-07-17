@@ -23,3 +23,8 @@ double Performance::Popularity()
 {
 	return soldTickets;
 }
+
+bool Performance::IsNeedData()
+{
+	return Date <= DateTime::Now && soldTickets <= 0;
+}

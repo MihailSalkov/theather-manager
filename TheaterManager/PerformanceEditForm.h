@@ -20,7 +20,10 @@ namespace TheaterManager {
 	{
 	private:
 		Performance ^ p;
-		List<PerformanceInfo^> ^ itemsInfo;
+	private: System::Windows::Forms::Label^  labelSoldTickets;
+
+	private: System::Windows::Forms::TextBox^  textBoxSoldTickets;
+			 List<PerformanceInfo^> ^ itemsInfo;
 
 	public:
 		PerformanceEditForm(Performance ^ p, List<PerformanceInfo^> ^ itemsInfo, bool isAdd)
@@ -39,6 +42,9 @@ namespace TheaterManager {
 			{
 				buttonConfirm->Text = "Создать";
 				Text = "Новое событие";
+
+				labelSoldTickets->Hide();
+				textBoxSoldTickets->Hide();
 			}
 			else
 			{
@@ -47,6 +53,7 @@ namespace TheaterManager {
 
 				comboBoxPerformanceInfo->SelectedIndex = itemsInfo->IndexOf(p->Info);
 				dateTimePicker1->Value = p->Date;
+				textBoxSoldTickets->Text = p->SoldTickets.ToString();
 			}
 		}
 
@@ -90,6 +97,8 @@ namespace TheaterManager {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->buttonCancel = (gcnew System::Windows::Forms::Button());
 			this->buttonConfirm = (gcnew System::Windows::Forms::Button());
+			this->labelSoldTickets = (gcnew System::Windows::Forms::Label());
+			this->textBoxSoldTickets = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// comboBoxPerformanceInfo
@@ -104,7 +113,7 @@ namespace TheaterManager {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(102, 13);
+			this->label1->Location = System::Drawing::Point(106, 14);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(61, 13);
 			this->label1->TabIndex = 1;
@@ -114,9 +123,9 @@ namespace TheaterManager {
 			// 
 			this->dateTimePicker1->CustomFormat = L"dd MMM yyyy г. HH:mm";
 			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
-			this->dateTimePicker1->Location = System::Drawing::Point(29, 108);
+			this->dateTimePicker1->Location = System::Drawing::Point(68, 108);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
-			this->dateTimePicker1->Size = System::Drawing::Size(220, 20);
+			this->dateTimePicker1->Size = System::Drawing::Size(143, 20);
 			this->dateTimePicker1->TabIndex = 2;
 			// 
 			// label2
@@ -131,7 +140,7 @@ namespace TheaterManager {
 			// buttonCancel
 			// 
 			this->buttonCancel->DialogResult = System::Windows::Forms::DialogResult::Cancel;
-			this->buttonCancel->Location = System::Drawing::Point(29, 161);
+			this->buttonCancel->Location = System::Drawing::Point(29, 206);
 			this->buttonCancel->Name = L"buttonCancel";
 			this->buttonCancel->Size = System::Drawing::Size(75, 29);
 			this->buttonCancel->TabIndex = 3;
@@ -141,7 +150,7 @@ namespace TheaterManager {
 			// buttonConfirm
 			// 
 			this->buttonConfirm->DialogResult = System::Windows::Forms::DialogResult::OK;
-			this->buttonConfirm->Location = System::Drawing::Point(174, 161);
+			this->buttonConfirm->Location = System::Drawing::Point(174, 206);
 			this->buttonConfirm->Name = L"buttonConfirm";
 			this->buttonConfirm->Size = System::Drawing::Size(75, 29);
 			this->buttonConfirm->TabIndex = 3;
@@ -149,11 +158,30 @@ namespace TheaterManager {
 			this->buttonConfirm->UseVisualStyleBackColor = true;
 			this->buttonConfirm->Click += gcnew System::EventHandler(this, &PerformanceEditForm::buttonConfirm_Click);
 			// 
+			// labelSoldTickets
+			// 
+			this->labelSoldTickets->AutoSize = true;
+			this->labelSoldTickets->Location = System::Drawing::Point(86, 151);
+			this->labelSoldTickets->Name = L"labelSoldTickets";
+			this->labelSoldTickets->Size = System::Drawing::Size(95, 13);
+			this->labelSoldTickets->TabIndex = 4;
+			this->labelSoldTickets->Text = L"Продано билетов";
+			// 
+			// textBoxSoldTickets
+			// 
+			this->textBoxSoldTickets->Location = System::Drawing::Point(82, 173);
+			this->textBoxSoldTickets->Name = L"textBoxSoldTickets";
+			this->textBoxSoldTickets->Size = System::Drawing::Size(100, 20);
+			this->textBoxSoldTickets->TabIndex = 5;
+			this->textBoxSoldTickets->Text = L"0";
+			// 
 			// PerformanceEditForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 209);
+			this->ClientSize = System::Drawing::Size(284, 247);
+			this->Controls->Add(this->textBoxSoldTickets);
+			this->Controls->Add(this->labelSoldTickets);
 			this->Controls->Add(this->buttonConfirm);
 			this->Controls->Add(this->buttonCancel);
 			this->Controls->Add(this->dateTimePicker1);
@@ -174,6 +202,7 @@ namespace TheaterManager {
 private: System::Void buttonConfirm_Click(System::Object^  sender, System::EventArgs^  e) {
 	p->Info = itemsInfo[comboBoxPerformanceInfo->SelectedIndex];
 	p->Date = dateTimePicker1->Value;
+	p->SoldTickets = p->SoldTickets.Parse(textBoxSoldTickets->Text);
 }
 };
 }

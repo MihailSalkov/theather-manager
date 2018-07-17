@@ -35,8 +35,6 @@ public:
 	void Load();
 	void Save();
 	PerformanceCollection ^ getByCurrentMonth();
-	PerformanceCollection ^ getByPopularity();
-	PerformanceCollection ^ getByProfit();
 	PerformanceCollection ^ getByPerformance(PerformanceInfo ^ perf);
 	void AddPerformance(Performance ^ perf);
 	void RemovePerformance(Performance ^ perf);
