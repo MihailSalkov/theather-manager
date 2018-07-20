@@ -121,7 +121,7 @@ namespace TheaterManager {
 			this->listBoxItems->FormattingEnabled = true;
 			this->listBoxItems->Location = System::Drawing::Point(12, 32);
 			this->listBoxItems->Name = L"listBoxItems";
-			this->listBoxItems->Size = System::Drawing::Size(243, 238);
+			this->listBoxItems->Size = System::Drawing::Size(243, 329);
 			this->listBoxItems->TabIndex = 0;
 			this->listBoxItems->SelectedIndexChanged += gcnew System::EventHandler(this, &PerformancesInfoForm::listBoxItems_SelectedIndexChanged);
 			// 
@@ -136,8 +136,10 @@ namespace TheaterManager {
 			// 
 			// textBoxName
 			// 
+			this->textBoxName->BackColor = System::Drawing::SystemColors::Window;
 			this->textBoxName->Location = System::Drawing::Point(276, 49);
 			this->textBoxName->Name = L"textBoxName";
+			this->textBoxName->ReadOnly = true;
 			this->textBoxName->Size = System::Drawing::Size(307, 20);
 			this->textBoxName->TabIndex = 2;
 			// 
@@ -152,9 +154,11 @@ namespace TheaterManager {
 			// 
 			// richTextBoxInfo
 			// 
+			this->richTextBoxInfo->BackColor = System::Drawing::SystemColors::Window;
 			this->richTextBoxInfo->Location = System::Drawing::Point(276, 130);
 			this->richTextBoxInfo->Name = L"richTextBoxInfo";
-			this->richTextBoxInfo->Size = System::Drawing::Size(307, 138);
+			this->richTextBoxInfo->ReadOnly = true;
+			this->richTextBoxInfo->Size = System::Drawing::Size(307, 227);
 			this->richTextBoxInfo->TabIndex = 4;
 			this->richTextBoxInfo->Text = L"";
 			// 
@@ -213,7 +217,7 @@ namespace TheaterManager {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(596, 282);
+			this->ClientSize = System::Drawing::Size(596, 369);
 			this->Controls->Add(this->labelTicketPrice);
 			this->Controls->Add(this->labelAge);
 			this->Controls->Add(this->richTextBoxInfo);
@@ -222,7 +226,9 @@ namespace TheaterManager {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->listBoxItems);
 			this->Controls->Add(this->menuStrip1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MainMenuStrip = this->menuStrip1;
+			this->MaximizeBox = false;
 			this->Name = L"PerformancesInfoForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Редактирование спектаклей";

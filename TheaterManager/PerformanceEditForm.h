@@ -149,7 +149,6 @@ namespace TheaterManager {
 			// 
 			// buttonConfirm
 			// 
-			this->buttonConfirm->DialogResult = System::Windows::Forms::DialogResult::OK;
 			this->buttonConfirm->Location = System::Drawing::Point(174, 206);
 			this->buttonConfirm->Name = L"buttonConfirm";
 			this->buttonConfirm->Size = System::Drawing::Size(75, 29);
@@ -188,6 +187,8 @@ namespace TheaterManager {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->comboBoxPerformanceInfo);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"PerformanceEditForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Новое событие";
@@ -200,9 +201,25 @@ namespace TheaterManager {
 	private: System::Void PerformanceEditForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 private: System::Void buttonConfirm_Click(System::Object^  sender, System::EventArgs^  e) {
+	List<String^> ^ errors = gcnew List<String^>();
+
+	if (comboBoxPerformanceInfo->SelectedIndex == -1)
+		errors->Add("Не выбран спектакль");
+	int tickets = -1;
+	if (!p->SoldTickets.TryParse(textBoxSoldTickets->Text, tickets) || tickets < 0)
+		errors->Add("Некорректная стоимость");
+
+	if (errors->Count > 0)
+	{
+		MessageBox::Show(String::Join("\n", errors), "Ошибка ввода", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
 	p->Info = itemsInfo[comboBoxPerformanceInfo->SelectedIndex];
 	p->Date = dateTimePicker1->Value;
-	p->SoldTickets = p->SoldTickets.Parse(textBoxSoldTickets->Text);
+	p->SoldTickets = tickets;
+
+	DialogResult = Windows::Forms::DialogResult::OK;
 }
 };
 }

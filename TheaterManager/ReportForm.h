@@ -65,13 +65,13 @@ namespace TheaterManager {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->buttonPopularity = (gcnew System::Windows::Forms::Button());
-			this->buttonProfit = (gcnew System::Windows::Forms::Button());
 			this->Спектакль = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->buttonPopularity = (gcnew System::Windows::Forms::Button());
+			this->buttonProfit = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -88,8 +88,29 @@ namespace TheaterManager {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(13, 48);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(544, 264);
+			this->dataGridView1->Size = System::Drawing::Size(544, 361);
 			this->dataGridView1->TabIndex = 0;
+			// 
+			// Спектакль
+			// 
+			this->Спектакль->HeaderText = L"Название";
+			this->Спектакль->Name = L"Спектакль";
+			this->Спектакль->Width = 200;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Спектаклей";
+			this->Column3->Name = L"Column3";
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Билетов";
+			this->Column1->Name = L"Column1";
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Доход";
+			this->Column2->Name = L"Column2";
 			// 
 			// label1
 			// 
@@ -120,36 +141,17 @@ namespace TheaterManager {
 			this->buttonProfit->UseVisualStyleBackColor = true;
 			this->buttonProfit->Click += gcnew System::EventHandler(this, &ReportForm::buttonProfit_Click);
 			// 
-			// Спектакль
-			// 
-			this->Спектакль->HeaderText = L"Название";
-			this->Спектакль->Name = L"Спектакль";
-			this->Спектакль->Width = 200;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Спектаклей";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Билетов";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Доход";
-			this->Column2->Name = L"Column2";
-			// 
 			// ReportForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(575, 324);
+			this->ClientSize = System::Drawing::Size(575, 421);
 			this->Controls->Add(this->buttonProfit);
 			this->Controls->Add(this->buttonPopularity);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"ReportForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Отчет";

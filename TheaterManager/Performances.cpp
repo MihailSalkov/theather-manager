@@ -66,6 +66,7 @@ void Performances::Load()
 				state = EVENTS;
 				break;
 			}
+
 			if (perfInfo->Info != "")
 				perfInfo->Info += "\n";
 			perfInfo->Info += line;
@@ -77,6 +78,7 @@ void Performances::Load()
 				state = NAME;
 				break;
 			}
+
 			array<Char> ^ sep = { L';' };
 			array<String^> ^ fields = line->Split(sep);
 

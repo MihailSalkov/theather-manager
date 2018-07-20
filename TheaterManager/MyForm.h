@@ -22,7 +22,10 @@ namespace TheaterManager {
 	private:
 		Performances ^ performances;
 		Performance ^ selectPerformance;
-		PerformanceCollection ^ currentPerformances;
+
+
+
+			 PerformanceCollection ^ currentPerformances;
 
 		property DateTime CurrentMonth {
 			DateTime get() {
@@ -224,7 +227,7 @@ namespace TheaterManager {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(360, 36);
+			this->label3->Location = System::Drawing::Point(354, 36);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(115, 13);
 			this->label3->TabIndex = 5;
@@ -232,21 +235,21 @@ namespace TheaterManager {
 			// 
 			// labelSoldTickets
 			// 
-			this->labelSoldTickets->AutoSize = true;
-			this->labelSoldTickets->Location = System::Drawing::Point(364, 61);
+			this->labelSoldTickets->Location = System::Drawing::Point(326, 61);
 			this->labelSoldTickets->Name = L"labelSoldTickets";
-			this->labelSoldTickets->Size = System::Drawing::Size(107, 13);
+			this->labelSoldTickets->Size = System::Drawing::Size(174, 18);
 			this->labelSoldTickets->TabIndex = 6;
 			this->labelSoldTickets->Text = L"Продано билетов: 0";
+			this->labelSoldTickets->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// labelProfit
 			// 
-			this->labelProfit->AutoSize = true;
-			this->labelProfit->Location = System::Drawing::Point(364, 88);
+			this->labelProfit->Location = System::Drawing::Point(323, 88);
 			this->labelProfit->Name = L"labelProfit";
-			this->labelProfit->Size = System::Drawing::Size(88, 13);
+			this->labelProfit->Size = System::Drawing::Size(177, 20);
 			this->labelProfit->TabIndex = 7;
 			this->labelProfit->Text = L"Прибыль: 0 руб.";
+			this->labelProfit->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// panelNeedWrite
 			// 
@@ -303,7 +306,9 @@ namespace TheaterManager {
 			this->Controls->Add(this->dateTimePickerCurrent);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->menuStrip1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MainMenuStrip = this->menuStrip1;
+			this->MaximizeBox = false;
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Theather Manager";

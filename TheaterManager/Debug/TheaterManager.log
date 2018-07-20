@@ -1,5 +1,5 @@
 ﻿  MyForm.cpp
-c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfoeditform.h(23): warning C4677: PerformanceInfoEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
+c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfoeditform.h(24): warning C4677: PerformanceInfoEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
   c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
 c:\users\mihail\source\repos\theatermanager\theatermanager\performancesinfoform.h(61): warning C4677: PerformancesInfoForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
   c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
@@ -9,11 +9,4 @@ c:\users\mihail\source\repos\theatermanager\theatermanager\performanceeditform.h
   c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
 c:\users\mihail\source\repos\theatermanager\theatermanager\reportform.h(22): warning C4677: ReportForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "ReportCollection"
   c:\users\mihail\source\repos\theatermanager\theatermanager\reportcollection.h(10): note:  см. объявление "ReportCollection"
-  Performances.cpp
-  PerformancesInfoForm.cpp
-c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfoeditform.h(23): warning C4677: PerformanceInfoEditForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
-  c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
-c:\users\mihail\source\repos\theatermanager\theatermanager\performancesinfoform.h(61): warning C4677: PerformancesInfoForm: сигнатура члена, не являющегося частным, содержит частный тип сборки "PerformanceInfo"
-  c:\users\mihail\source\repos\theatermanager\theatermanager\performanceinfo.h(13): note:  см. объявление "PerformanceInfo"
-  Создание кода...
   TheaterManager.vcxproj -> C:\Users\Mihail\source\repos\TheaterManager\Debug\TheaterManager.exe
